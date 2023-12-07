@@ -1,11 +1,12 @@
 import { useColorScheme } from 'react-native';
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import store from './src/store/store';
+import configureStore from './src/store/store';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import React, { useEffect } from 'react';
+import { PersistGate } from 'redux-persist/es/integration/react'
+
 import Loader from './src/components/Loader';
 import HomeScreen from './src/navigations/HomeBottomNavigation';
-import i18n from './src/i18n/i18n';
 import { getValueFromAsyncStorage } from './src/utils/asyncStorage';
 import { setTheme, setLanguage } from './src/screens/SettingsScreen/slice';
 
@@ -73,13 +74,15 @@ const AppRoot = () => {
   );
 };
 
-// initialize i18n service
-const initI18n = i18n;
+
+const { persistor, store } = configureStore()
 
 const App = () => {
   return (
     <Provider store={store}>
-      <AppRoot />
+      <PersistGate persistor={persistor} >
+        <AppRoot />
+      </PersistGate>
     </Provider>
   );
 };

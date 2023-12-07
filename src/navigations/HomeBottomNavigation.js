@@ -11,7 +11,6 @@ const Tab = createBottomTabNavigator();
 
 const HomeBottomNavigation = () => {
     const { colors } = useTheme();
-    const { t } = useTranslation();
     return (
         <Tab.Navigator
             id='BottomNavigation'
@@ -39,19 +38,19 @@ const HomeBottomNavigation = () => {
             <Tab.Screen
                 name='UsersStack'
                 component={UsersStackScreen}
-                options={{ headerShown: false, title: t('users') }} />
+                options={{ headerShown: false, title: "User" }} />
             <Tab.Screen
                 name='SettingsStack'
                 component={SettingsStackScreen}
-                options={{ headerShown: false, title: t('settings') }} />
+                options={{ headerShown: false, title: "Setting" }} />
             <Tab.Screen
                 name='Feedback'
                 component={FeedbackScreen}
-                options={{ headerShown: false, title: t('feedback') }} />
+                options={{ headerShown: false, title: "Feedback" }} />
             <Tab.Screen
                 name='More'
                 component={MoreScreen}
-                options={{ headerShown: false, title: t('more') }} />
+                options={{ headerShown: false, title: "More" }} />
         </Tab.Navigator>
     )
 };
